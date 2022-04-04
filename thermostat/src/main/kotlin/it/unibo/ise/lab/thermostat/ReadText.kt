@@ -13,18 +13,6 @@ import java.io.IOException
 
 object ReadText : BinaryRelation.Functional<ExecutionContext>("read_text") {
     override fun Solve.Request<ExecutionContext>.computeOneSubstitution(first: Term, second: Term): Substitution {
-        ensuringArgumentIsAtom(0)
-        val path = File((first as Atom).value)
-        return if (path.exists() && path.isFile && path.canRead()) {
-            try {
-                val text = path.readText()
-                val term = TermParser.withOperators(context.operators).parseTerm(text)
-                second mguWith term
-            } catch (_: IOException) {
-                Substitution.failed()
-            }
-        } else {
-            Substitution.failed()
-        }
+        TODO()
     }
 }
